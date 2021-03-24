@@ -1,0 +1,84 @@
+#REEBORG'S WORLD https://reeborg.ca/reeborg.html
+
+#stop when reach the flag
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+    
+def jump():
+    move()
+    turn_left()
+    move()
+    turn_right()
+    move()
+    turn_right()
+    move()
+    turn_left()
+
+while at_goal() != True:
+    jump()
+
+
+#move forward or jump over until reach the flag
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+    
+def jump():
+    turn_left()
+    move()
+    turn_right()
+    move()
+    turn_right()
+    move()
+    turn_left()
+
+while at_goal() != True:  
+    if front_is_clear() == True:
+        move()
+    else:
+        jump()
+
+#move forward or jump over DIFFERENT SIZE hurdle until reach the flag
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+    
+def jump():
+    turn_left()
+    while wall_on_right():
+        move()
+    turn_right()
+    move()
+    turn_right()
+    while wall_on_right and not wall_in_front():
+        move()
+    turn_left()
+
+while at_goal() != True:  
+    if front_is_clear() == True:
+        move()
+    else:
+        jump()
+        
+#maze runner
+#The secret is to have Reeborg follow along the right edge of the maze,
+#turning right if it can, going straight ahead if it can’t turn right,
+#or turning left as a last resort.
+
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+    
+while at_goal() != True:
+    if right_is_clear():
+        turn_right()
+        move()
+    elif front_is_clear():    
+        move()
+    else:
+        turn_left()
